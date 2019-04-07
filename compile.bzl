@@ -535,7 +535,12 @@ def proto_compile_impl(ctx):
     ###
 
     ### adding a flag about improt path
-    args = ["-I%s/kvproto/proto:%s/kvproto/include" %(outdir, outdir)]
+    ### 1. alwasy include
+    depPath = [""]
+    for path in ctx.attr.proto_path:
+        depPath += "%s/%s" %(outdir, path)
+
+    args = ["-I%s" % ":".join(depPath)]
     args += ["--descriptor_set_out=%s" % descriptor.path]
 
     # By default we have a single 'proto_path' argument at the 'staging area'
@@ -633,6 +638,9 @@ proto_compile = rule(
         ),
         "has_services": attr.bool(
             doc = "If the proto files(s) have a service rpc, generate grpc outputs",
+        ),
+        "proto_path": attr.string_list(
+            doc = "Specify protoc's import path",
         ),
         "protoc": attr.label(
             doc = "The protoc tool",
