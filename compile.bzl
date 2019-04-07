@@ -540,7 +540,6 @@ def proto_compile_impl(ctx):
     for path in ctx.attr.proto_path:
         depPath += "%s/%s" %(outdir, path)
 
-    println(ctx.attr.proto_path)
     args = ["-I%s" % ":".join(depPath)]
     args += ["--descriptor_set_out=%s" % descriptor.path]
 
