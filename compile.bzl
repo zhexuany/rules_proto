@@ -536,7 +536,7 @@ def proto_compile_impl(ctx):
 
     ### adding a flag about improt path
     args = ["-I./proto:./include"]
-    args = ["--descriptor_set_out=%s" % descriptor.path]
+    args += ["--descriptor_set_out=%s" % descriptor.path]
 
     # By default we have a single 'proto_path' argument at the 'staging area'
     # root.
