@@ -538,7 +538,7 @@ def proto_compile_impl(ctx):
     ### 1. alwasy include
     depPath = [""]
     for path in ctx.attr.proto_path:
-        depPath += "%s/%s" %(outdir, path)
+        depPath += ["%s/%s" %(outdir, path)]
 
     args = ["-I%s" % ":".join(depPath)]
     args += ["--descriptor_set_out=%s" % descriptor.path]
