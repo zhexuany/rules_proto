@@ -498,7 +498,6 @@ def proto_compile_impl(ctx):
             proto = copy_proto(ctx, descriptor, src)
             targets[src] = proto
             protos.append(proto)
-
         # Iterate all transitive .proto files.  If we already processed in the
         # loop above, skip it. Otherwise add a copy action to get it into the
         # 'staging area'
@@ -535,6 +534,8 @@ def proto_compile_impl(ctx):
     ### Part 4: build list of arguments for protoc
     ###
 
+    ### adding a flag about improt path
+    args = ["-I./proto:./include"]
     args = ["--descriptor_set_out=%s" % descriptor.path]
 
     # By default we have a single 'proto_path' argument at the 'staging area'
