@@ -6,6 +6,7 @@ def java_grpc_library(**kwargs):
     proto_path = kwargs.get("proto_path")
     visibility = kwargs.get("visibility")
 
+    print(proto_path)
     name_pb = name + "_pb"
     java_grpc_compile(
         name = name_pb,
