@@ -535,7 +535,7 @@ def proto_compile_impl(ctx):
     ###
 
     ### adding a flag about improt path
-    args = ["-I./kvproto/proto:./kvproto/include"]
+    args = ["-I%s/kvproto/proto:%s/kvproto/include" %(outdir, outdir)]
     args += ["--descriptor_set_out=%s" % descriptor.path]
 
     # By default we have a single 'proto_path' argument at the 'staging area'
